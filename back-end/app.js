@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 
 const app = express();
 app.listen(7070, () => {
@@ -6,5 +7,5 @@ app.listen(7070, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send('첫 Express 서버 실행');
+  res.sendFile(path.join(__dirname, "/pub/index.html"));
 });
