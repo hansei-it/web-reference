@@ -28,3 +28,11 @@ app.use('*', (req,res,next)=>{
 app.use(morgan('dev'));//dev,combined,common,short,tiny등
 // '/'로 접속하면 pub 디렉토리를 정적파일 위치로 지정
 app.use('/', express.static(path.join(__dirname, 'pub')));
+
+app.use((req,res)=>{
+    res.status(400).send('클라이언트의 요청이 잘 못 되었습니다.');
+})
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).send('서버가 처리할 수 없는 예외 발생');
+  });
